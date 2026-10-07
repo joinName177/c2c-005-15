@@ -12,7 +12,7 @@ function deps(options: { denied?: boolean } = {}): StudioDependencies {
     cropper:{inspect:async()=>({duration:2,needsCrop:false}),crop:async(blob,range)=>({blob,duration:range.end-range.start})},
     renderer:{render:async()=>new Blob(['cover'],{type:'image/png'})},
     repository:{list:async()=>works,save:async(m)=>{works.push(m)},rename:async()=>{},delete:async(id)=>{const i=works.findIndex(w=>w.id===id);if(i>=0)works.splice(i,1)}},
-    share:{share:async()=> 'shared'},
+    share:{share:async()=>({kind:'shared' as const}),downloadFiles:()=>[]},
   };
 }
 
